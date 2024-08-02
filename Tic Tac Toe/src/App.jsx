@@ -1,12 +1,5 @@
 import { useState } from "react";
-
-export function Square({ value, onSquareClick }) {
-    return (
-        <button className="square" onClick={onSquareClick}>
-            {value}
-        </button>
-    );
-}
+import { Square } from "./Components/Square";
 
 export default function Board() {
     const [squares, setSquares] = useState(Array(9).fill(null));
@@ -29,8 +22,7 @@ export default function Board() {
         if (isWinnerDecided) {
             setMessage(`Winner is Player ${userState}`);
             setWinnerDecided(true);
-        }
-        if (isDraw(newSquares)) {
+        } else if (isDraw(newSquares)) {
             setMessage("It's a Draw");
         }
         const newUserState = userState === "X" ? "O" : "X";
